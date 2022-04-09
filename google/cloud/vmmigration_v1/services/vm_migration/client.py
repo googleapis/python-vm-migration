@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -611,7 +611,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_list_sources():
                 # Create a client
@@ -720,7 +720,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_get_source():
                 # Create a client
@@ -817,7 +817,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_create_source():
                 # Create a client
@@ -940,7 +940,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_update_source():
                 # Create a client
@@ -1061,7 +1061,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_delete_source():
                 # Create a client
@@ -1186,7 +1186,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_fetch_inventory():
                 # Create a client
@@ -1279,7 +1279,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_list_utilization_reports():
                 # Create a client
@@ -1388,7 +1388,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_get_utilization_report():
                 # Create a client
@@ -1486,7 +1486,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_create_utilization_report():
                 # Create a client
@@ -1619,7 +1619,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_delete_utilization_report():
                 # Create a client
@@ -1741,7 +1741,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_list_datacenter_connectors():
                 # Create a client
@@ -1852,7 +1852,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_get_datacenter_connector():
                 # Create a client
@@ -1953,7 +1953,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_create_datacenter_connector():
                 # Create a client
@@ -2087,7 +2087,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_delete_datacenter_connector():
                 # Create a client
@@ -2211,7 +2211,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_create_migrating_vm():
                 # Create a client
@@ -2333,7 +2333,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_list_migrating_vms():
                 # Create a client
@@ -2442,7 +2442,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_get_migrating_vm():
                 # Create a client
@@ -2539,7 +2539,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_update_migrating_vm():
                 # Create a client
@@ -2660,7 +2660,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_delete_migrating_vm():
                 # Create a client
@@ -2783,7 +2783,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_start_migration():
                 # Create a client
@@ -2900,7 +2900,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_resume_migration():
                 # Create a client
@@ -2995,7 +2995,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_pause_migration():
                 # Create a client
@@ -3090,7 +3090,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_finalize_migration():
                 # Create a client
@@ -3204,7 +3204,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_create_clone_job():
                 # Create a client
@@ -3338,7 +3338,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_cancel_clone_job():
                 # Create a client
@@ -3446,7 +3446,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_list_clone_jobs():
                 # Create a client
@@ -3555,7 +3555,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_get_clone_job():
                 # Create a client
@@ -3665,7 +3665,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_create_cutover_job():
                 # Create a client
@@ -3789,7 +3789,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_cancel_cutover_job():
                 # Create a client
@@ -3897,7 +3897,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_list_cutover_jobs():
                 # Create a client
@@ -4006,7 +4006,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_get_cutover_job():
                 # Create a client
@@ -4103,7 +4103,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_list_groups():
                 # Create a client
@@ -4212,7 +4212,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_get_group():
                 # Create a client
@@ -4308,7 +4308,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_create_group():
                 # Create a client
@@ -4431,7 +4431,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_update_group():
                 # Create a client
@@ -4552,7 +4552,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_delete_group():
                 # Create a client
@@ -4670,7 +4670,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_add_group_migration():
                 # Create a client
@@ -4780,7 +4780,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_remove_group_migration():
                 # Create a client
@@ -4892,7 +4892,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_list_target_projects():
                 # Create a client
@@ -5005,7 +5005,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_get_target_project():
                 # Create a client
@@ -5105,7 +5105,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_create_target_project():
                 # Create a client
@@ -5232,7 +5232,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_update_target_project():
                 # Create a client
@@ -5357,7 +5357,7 @@ class VmMigrationClient(metaclass=VmMigrationClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import vmmigration_v1
+                    from google.cloud import vmmigration_v1
 
             def sample_delete_target_project():
                 # Create a client
