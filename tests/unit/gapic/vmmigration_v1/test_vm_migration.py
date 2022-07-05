@@ -12929,7 +12929,6 @@ def test_vm_migration_transport_auth_adc(transport_class):
     [
         transports.VmMigrationGrpcTransport,
         transports.VmMigrationGrpcAsyncIOTransport,
-        transports.VmMigrationRestTransport,
     ],
 )
 def test_vm_migration_transport_auth_gdch_credentials(transport_class):
