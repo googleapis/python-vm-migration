@@ -3,7 +3,7 @@ Python Client for Cloud VM Migration API
 
 |stable| |pypi| |versions|
 
-`Cloud VM Migration API`_: 
+`Cloud VM Migration API`_:  for Compute Engine migrates VMs from your on-premises data center into Compute Engine.
 
 - `Client Library Documentation`_
 - `Product Documentation`_
