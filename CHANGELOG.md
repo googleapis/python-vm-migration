@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/googleapis/python-vm-migration/compare/v1.3.1...v1.4.0) (2022-09-07)
+
+
+### Features
+
+* Bump gapic-generator-python version to 1.3.0 ([681cc63](https://github.com/googleapis/python-vm-migration/commit/681cc634ad5963b122384268c676d719e02b5c6e))
+
 ## [1.3.1](https://github.com/googleapis/python-vm-migration/compare/v1.3.0...v1.3.1) (2022-08-11)
 
 
