@@ -14,29 +14,31 @@
 # limitations under the License.
 #
 
-from google.auth.transport.requests import AuthorizedSession  # type: ignore
-import json  # type: ignore
-import grpc  # type: ignore
-from google.auth.transport.grpc import SslCredentials  # type: ignore
-from google.auth import credentials as ga_credentials  # type: ignore
-from google.api_core import exceptions as core_exceptions
-from google.api_core import retry as retries
-from google.api_core import rest_helpers
-from google.api_core import rest_streaming
-from google.api_core import path_template
-from google.api_core import gapic_v1
-
-from google.protobuf import json_format
-from google.api_core import operations_v1
-from google.iam.v1 import iam_policy_pb2  # type: ignore
-from google.iam.v1 import policy_pb2  # type: ignore
-from google.cloud.location import locations_pb2 # type: ignore
-from google.longrunning import operations_pb2
-from requests import __version__ as requests_version
 import dataclasses
+import json  # type: ignore
 import re
 from typing import Callable, Dict, List, Optional, Sequence, Tuple, Union
 import warnings
+
+from google.api_core import (
+    gapic_v1,
+    operations_v1,
+    path_template,
+    rest_helpers,
+    rest_streaming,
+)
+from google.api_core import exceptions as core_exceptions
+from google.api_core import retry as retries
+from google.auth import credentials as ga_credentials  # type: ignore
+from google.auth.transport.grpc import SslCredentials  # type: ignore
+from google.auth.transport.requests import AuthorizedSession  # type: ignore
+from google.cloud.location import locations_pb2  # type: ignore
+from google.iam.v1 import iam_policy_pb2  # type: ignore
+from google.iam.v1 import policy_pb2  # type: ignore
+from google.longrunning import operations_pb2
+from google.protobuf import json_format
+import grpc  # type: ignore
+from requests import __version__ as requests_version
 
 try:
     OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault]
@@ -44,11 +46,12 @@ except AttributeError:  # pragma: NO COVER
     OptionalRetry = Union[retries.Retry, object]  # type: ignore
 
 
-from google.cloud.vmmigration_v1.types import vmmigration
 from google.longrunning import operations_pb2  # type: ignore
 
-from .base import VmMigrationTransport, DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
+from google.cloud.vmmigration_v1.types import vmmigration
 
+from .base import DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
+from .base import VmMigrationTransport
 
 DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
     gapic_version=BASE_DEFAULT_CLIENT_INFO.gapic_version,
@@ -445,7 +448,12 @@ class VmMigrationRestInterceptor:
 
 
     """
-    def pre_add_group_migration(self, request: vmmigration.AddGroupMigrationRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.AddGroupMigrationRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_add_group_migration(
+        self,
+        request: vmmigration.AddGroupMigrationRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.AddGroupMigrationRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for add_group_migration
 
         Override in a subclass to manipulate the request or metadata
@@ -453,7 +461,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_add_group_migration(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_add_group_migration(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for add_group_migration
 
         Override in a subclass to manipulate the response
@@ -461,7 +471,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_cancel_clone_job(self, request: vmmigration.CancelCloneJobRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.CancelCloneJobRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_cancel_clone_job(
+        self,
+        request: vmmigration.CancelCloneJobRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.CancelCloneJobRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for cancel_clone_job
 
         Override in a subclass to manipulate the request or metadata
@@ -469,7 +484,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_cancel_clone_job(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_cancel_clone_job(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for cancel_clone_job
 
         Override in a subclass to manipulate the response
@@ -477,7 +494,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_cancel_cutover_job(self, request: vmmigration.CancelCutoverJobRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.CancelCutoverJobRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_cancel_cutover_job(
+        self,
+        request: vmmigration.CancelCutoverJobRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.CancelCutoverJobRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for cancel_cutover_job
 
         Override in a subclass to manipulate the request or metadata
@@ -485,7 +507,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_cancel_cutover_job(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_cancel_cutover_job(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for cancel_cutover_job
 
         Override in a subclass to manipulate the response
@@ -493,7 +517,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_clone_job(self, request: vmmigration.CreateCloneJobRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.CreateCloneJobRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_clone_job(
+        self,
+        request: vmmigration.CreateCloneJobRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.CreateCloneJobRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_clone_job
 
         Override in a subclass to manipulate the request or metadata
@@ -501,7 +530,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_create_clone_job(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_create_clone_job(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for create_clone_job
 
         Override in a subclass to manipulate the response
@@ -509,7 +540,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_cutover_job(self, request: vmmigration.CreateCutoverJobRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.CreateCutoverJobRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_cutover_job(
+        self,
+        request: vmmigration.CreateCutoverJobRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.CreateCutoverJobRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_cutover_job
 
         Override in a subclass to manipulate the request or metadata
@@ -517,7 +553,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_create_cutover_job(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_create_cutover_job(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for create_cutover_job
 
         Override in a subclass to manipulate the response
@@ -525,7 +563,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_datacenter_connector(self, request: vmmigration.CreateDatacenterConnectorRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.CreateDatacenterConnectorRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_datacenter_connector(
+        self,
+        request: vmmigration.CreateDatacenterConnectorRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.CreateDatacenterConnectorRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_datacenter_connector
 
         Override in a subclass to manipulate the request or metadata
@@ -533,7 +576,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_create_datacenter_connector(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_create_datacenter_connector(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for create_datacenter_connector
 
         Override in a subclass to manipulate the response
@@ -541,7 +586,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_group(self, request: vmmigration.CreateGroupRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.CreateGroupRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_group(
+        self,
+        request: vmmigration.CreateGroupRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.CreateGroupRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_group
 
         Override in a subclass to manipulate the request or metadata
@@ -549,7 +599,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_create_group(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_create_group(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for create_group
 
         Override in a subclass to manipulate the response
@@ -557,7 +609,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_migrating_vm(self, request: vmmigration.CreateMigratingVmRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.CreateMigratingVmRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_migrating_vm(
+        self,
+        request: vmmigration.CreateMigratingVmRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.CreateMigratingVmRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_migrating_vm
 
         Override in a subclass to manipulate the request or metadata
@@ -565,7 +622,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_create_migrating_vm(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_create_migrating_vm(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for create_migrating_vm
 
         Override in a subclass to manipulate the response
@@ -573,7 +632,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_source(self, request: vmmigration.CreateSourceRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.CreateSourceRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_source(
+        self,
+        request: vmmigration.CreateSourceRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.CreateSourceRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_source
 
         Override in a subclass to manipulate the request or metadata
@@ -581,7 +645,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_create_source(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_create_source(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for create_source
 
         Override in a subclass to manipulate the response
@@ -589,7 +655,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_target_project(self, request: vmmigration.CreateTargetProjectRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.CreateTargetProjectRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_target_project(
+        self,
+        request: vmmigration.CreateTargetProjectRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.CreateTargetProjectRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_target_project
 
         Override in a subclass to manipulate the request or metadata
@@ -597,7 +668,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_create_target_project(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_create_target_project(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for create_target_project
 
         Override in a subclass to manipulate the response
@@ -605,7 +678,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_utilization_report(self, request: vmmigration.CreateUtilizationReportRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.CreateUtilizationReportRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_utilization_report(
+        self,
+        request: vmmigration.CreateUtilizationReportRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.CreateUtilizationReportRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_utilization_report
 
         Override in a subclass to manipulate the request or metadata
@@ -613,7 +691,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_create_utilization_report(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_create_utilization_report(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for create_utilization_report
 
         Override in a subclass to manipulate the response
@@ -621,7 +701,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_delete_datacenter_connector(self, request: vmmigration.DeleteDatacenterConnectorRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.DeleteDatacenterConnectorRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_delete_datacenter_connector(
+        self,
+        request: vmmigration.DeleteDatacenterConnectorRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.DeleteDatacenterConnectorRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_datacenter_connector
 
         Override in a subclass to manipulate the request or metadata
@@ -629,7 +714,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_delete_datacenter_connector(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_delete_datacenter_connector(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for delete_datacenter_connector
 
         Override in a subclass to manipulate the response
@@ -637,7 +724,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_delete_group(self, request: vmmigration.DeleteGroupRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.DeleteGroupRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_delete_group(
+        self,
+        request: vmmigration.DeleteGroupRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.DeleteGroupRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_group
 
         Override in a subclass to manipulate the request or metadata
@@ -645,7 +737,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_delete_group(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_delete_group(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for delete_group
 
         Override in a subclass to manipulate the response
@@ -653,7 +747,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_delete_migrating_vm(self, request: vmmigration.DeleteMigratingVmRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.DeleteMigratingVmRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_delete_migrating_vm(
+        self,
+        request: vmmigration.DeleteMigratingVmRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.DeleteMigratingVmRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_migrating_vm
 
         Override in a subclass to manipulate the request or metadata
@@ -661,7 +760,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_delete_migrating_vm(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_delete_migrating_vm(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for delete_migrating_vm
 
         Override in a subclass to manipulate the response
@@ -669,7 +770,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_delete_source(self, request: vmmigration.DeleteSourceRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.DeleteSourceRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_delete_source(
+        self,
+        request: vmmigration.DeleteSourceRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.DeleteSourceRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_source
 
         Override in a subclass to manipulate the request or metadata
@@ -677,7 +783,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_delete_source(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_delete_source(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for delete_source
 
         Override in a subclass to manipulate the response
@@ -685,7 +793,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_delete_target_project(self, request: vmmigration.DeleteTargetProjectRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.DeleteTargetProjectRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_delete_target_project(
+        self,
+        request: vmmigration.DeleteTargetProjectRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.DeleteTargetProjectRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_target_project
 
         Override in a subclass to manipulate the request or metadata
@@ -693,7 +806,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_delete_target_project(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_delete_target_project(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for delete_target_project
 
         Override in a subclass to manipulate the response
@@ -701,7 +816,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_delete_utilization_report(self, request: vmmigration.DeleteUtilizationReportRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.DeleteUtilizationReportRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_delete_utilization_report(
+        self,
+        request: vmmigration.DeleteUtilizationReportRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.DeleteUtilizationReportRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for delete_utilization_report
 
         Override in a subclass to manipulate the request or metadata
@@ -709,7 +829,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_delete_utilization_report(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_delete_utilization_report(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for delete_utilization_report
 
         Override in a subclass to manipulate the response
@@ -717,7 +839,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_fetch_inventory(self, request: vmmigration.FetchInventoryRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.FetchInventoryRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_fetch_inventory(
+        self,
+        request: vmmigration.FetchInventoryRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.FetchInventoryRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for fetch_inventory
 
         Override in a subclass to manipulate the request or metadata
@@ -725,7 +852,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_fetch_inventory(self, response: vmmigration.FetchInventoryResponse) -> vmmigration.FetchInventoryResponse:
+    def post_fetch_inventory(
+        self, response: vmmigration.FetchInventoryResponse
+    ) -> vmmigration.FetchInventoryResponse:
         """Post-rpc interceptor for fetch_inventory
 
         Override in a subclass to manipulate the response
@@ -733,7 +862,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_finalize_migration(self, request: vmmigration.FinalizeMigrationRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.FinalizeMigrationRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_finalize_migration(
+        self,
+        request: vmmigration.FinalizeMigrationRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.FinalizeMigrationRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for finalize_migration
 
         Override in a subclass to manipulate the request or metadata
@@ -741,7 +875,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_finalize_migration(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_finalize_migration(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for finalize_migration
 
         Override in a subclass to manipulate the response
@@ -749,7 +885,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_clone_job(self, request: vmmigration.GetCloneJobRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.GetCloneJobRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_clone_job(
+        self,
+        request: vmmigration.GetCloneJobRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.GetCloneJobRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_clone_job
 
         Override in a subclass to manipulate the request or metadata
@@ -757,7 +898,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_get_clone_job(self, response: vmmigration.CloneJob) -> vmmigration.CloneJob:
+    def post_get_clone_job(
+        self, response: vmmigration.CloneJob
+    ) -> vmmigration.CloneJob:
         """Post-rpc interceptor for get_clone_job
 
         Override in a subclass to manipulate the response
@@ -765,7 +908,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_cutover_job(self, request: vmmigration.GetCutoverJobRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.GetCutoverJobRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_cutover_job(
+        self,
+        request: vmmigration.GetCutoverJobRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.GetCutoverJobRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_cutover_job
 
         Override in a subclass to manipulate the request or metadata
@@ -773,7 +921,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_get_cutover_job(self, response: vmmigration.CutoverJob) -> vmmigration.CutoverJob:
+    def post_get_cutover_job(
+        self, response: vmmigration.CutoverJob
+    ) -> vmmigration.CutoverJob:
         """Post-rpc interceptor for get_cutover_job
 
         Override in a subclass to manipulate the response
@@ -781,7 +931,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_datacenter_connector(self, request: vmmigration.GetDatacenterConnectorRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.GetDatacenterConnectorRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_datacenter_connector(
+        self,
+        request: vmmigration.GetDatacenterConnectorRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.GetDatacenterConnectorRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_datacenter_connector
 
         Override in a subclass to manipulate the request or metadata
@@ -789,7 +944,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_get_datacenter_connector(self, response: vmmigration.DatacenterConnector) -> vmmigration.DatacenterConnector:
+    def post_get_datacenter_connector(
+        self, response: vmmigration.DatacenterConnector
+    ) -> vmmigration.DatacenterConnector:
         """Post-rpc interceptor for get_datacenter_connector
 
         Override in a subclass to manipulate the response
@@ -797,7 +954,10 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_group(self, request: vmmigration.GetGroupRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.GetGroupRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_group(
+        self, request: vmmigration.GetGroupRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[vmmigration.GetGroupRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_group
 
         Override in a subclass to manipulate the request or metadata
@@ -813,7 +973,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_migrating_vm(self, request: vmmigration.GetMigratingVmRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.GetMigratingVmRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_migrating_vm(
+        self,
+        request: vmmigration.GetMigratingVmRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.GetMigratingVmRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_migrating_vm
 
         Override in a subclass to manipulate the request or metadata
@@ -821,7 +986,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_get_migrating_vm(self, response: vmmigration.MigratingVm) -> vmmigration.MigratingVm:
+    def post_get_migrating_vm(
+        self, response: vmmigration.MigratingVm
+    ) -> vmmigration.MigratingVm:
         """Post-rpc interceptor for get_migrating_vm
 
         Override in a subclass to manipulate the response
@@ -829,7 +996,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_replication_cycle(self, request: vmmigration.GetReplicationCycleRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.GetReplicationCycleRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_replication_cycle(
+        self,
+        request: vmmigration.GetReplicationCycleRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.GetReplicationCycleRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_replication_cycle
 
         Override in a subclass to manipulate the request or metadata
@@ -837,7 +1009,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_get_replication_cycle(self, response: vmmigration.ReplicationCycle) -> vmmigration.ReplicationCycle:
+    def post_get_replication_cycle(
+        self, response: vmmigration.ReplicationCycle
+    ) -> vmmigration.ReplicationCycle:
         """Post-rpc interceptor for get_replication_cycle
 
         Override in a subclass to manipulate the response
@@ -845,7 +1019,10 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_source(self, request: vmmigration.GetSourceRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.GetSourceRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_source(
+        self, request: vmmigration.GetSourceRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[vmmigration.GetSourceRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_source
 
         Override in a subclass to manipulate the request or metadata
@@ -861,7 +1038,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_target_project(self, request: vmmigration.GetTargetProjectRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.GetTargetProjectRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_target_project(
+        self,
+        request: vmmigration.GetTargetProjectRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.GetTargetProjectRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_target_project
 
         Override in a subclass to manipulate the request or metadata
@@ -869,7 +1051,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_get_target_project(self, response: vmmigration.TargetProject) -> vmmigration.TargetProject:
+    def post_get_target_project(
+        self, response: vmmigration.TargetProject
+    ) -> vmmigration.TargetProject:
         """Post-rpc interceptor for get_target_project
 
         Override in a subclass to manipulate the response
@@ -877,7 +1061,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_utilization_report(self, request: vmmigration.GetUtilizationReportRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.GetUtilizationReportRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_utilization_report(
+        self,
+        request: vmmigration.GetUtilizationReportRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.GetUtilizationReportRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_utilization_report
 
         Override in a subclass to manipulate the request or metadata
@@ -885,7 +1074,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_get_utilization_report(self, response: vmmigration.UtilizationReport) -> vmmigration.UtilizationReport:
+    def post_get_utilization_report(
+        self, response: vmmigration.UtilizationReport
+    ) -> vmmigration.UtilizationReport:
         """Post-rpc interceptor for get_utilization_report
 
         Override in a subclass to manipulate the response
@@ -893,7 +1084,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_clone_jobs(self, request: vmmigration.ListCloneJobsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.ListCloneJobsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_clone_jobs(
+        self,
+        request: vmmigration.ListCloneJobsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.ListCloneJobsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_clone_jobs
 
         Override in a subclass to manipulate the request or metadata
@@ -901,7 +1097,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_list_clone_jobs(self, response: vmmigration.ListCloneJobsResponse) -> vmmigration.ListCloneJobsResponse:
+    def post_list_clone_jobs(
+        self, response: vmmigration.ListCloneJobsResponse
+    ) -> vmmigration.ListCloneJobsResponse:
         """Post-rpc interceptor for list_clone_jobs
 
         Override in a subclass to manipulate the response
@@ -909,7 +1107,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_cutover_jobs(self, request: vmmigration.ListCutoverJobsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.ListCutoverJobsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_cutover_jobs(
+        self,
+        request: vmmigration.ListCutoverJobsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.ListCutoverJobsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_cutover_jobs
 
         Override in a subclass to manipulate the request or metadata
@@ -917,7 +1120,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_list_cutover_jobs(self, response: vmmigration.ListCutoverJobsResponse) -> vmmigration.ListCutoverJobsResponse:
+    def post_list_cutover_jobs(
+        self, response: vmmigration.ListCutoverJobsResponse
+    ) -> vmmigration.ListCutoverJobsResponse:
         """Post-rpc interceptor for list_cutover_jobs
 
         Override in a subclass to manipulate the response
@@ -925,7 +1130,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_datacenter_connectors(self, request: vmmigration.ListDatacenterConnectorsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.ListDatacenterConnectorsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_datacenter_connectors(
+        self,
+        request: vmmigration.ListDatacenterConnectorsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.ListDatacenterConnectorsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_datacenter_connectors
 
         Override in a subclass to manipulate the request or metadata
@@ -933,7 +1143,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_list_datacenter_connectors(self, response: vmmigration.ListDatacenterConnectorsResponse) -> vmmigration.ListDatacenterConnectorsResponse:
+    def post_list_datacenter_connectors(
+        self, response: vmmigration.ListDatacenterConnectorsResponse
+    ) -> vmmigration.ListDatacenterConnectorsResponse:
         """Post-rpc interceptor for list_datacenter_connectors
 
         Override in a subclass to manipulate the response
@@ -941,7 +1153,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_groups(self, request: vmmigration.ListGroupsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.ListGroupsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_groups(
+        self,
+        request: vmmigration.ListGroupsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.ListGroupsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_groups
 
         Override in a subclass to manipulate the request or metadata
@@ -949,7 +1166,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_list_groups(self, response: vmmigration.ListGroupsResponse) -> vmmigration.ListGroupsResponse:
+    def post_list_groups(
+        self, response: vmmigration.ListGroupsResponse
+    ) -> vmmigration.ListGroupsResponse:
         """Post-rpc interceptor for list_groups
 
         Override in a subclass to manipulate the response
@@ -957,7 +1176,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_migrating_vms(self, request: vmmigration.ListMigratingVmsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.ListMigratingVmsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_migrating_vms(
+        self,
+        request: vmmigration.ListMigratingVmsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.ListMigratingVmsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_migrating_vms
 
         Override in a subclass to manipulate the request or metadata
@@ -965,7 +1189,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_list_migrating_vms(self, response: vmmigration.ListMigratingVmsResponse) -> vmmigration.ListMigratingVmsResponse:
+    def post_list_migrating_vms(
+        self, response: vmmigration.ListMigratingVmsResponse
+    ) -> vmmigration.ListMigratingVmsResponse:
         """Post-rpc interceptor for list_migrating_vms
 
         Override in a subclass to manipulate the response
@@ -973,7 +1199,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_replication_cycles(self, request: vmmigration.ListReplicationCyclesRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.ListReplicationCyclesRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_replication_cycles(
+        self,
+        request: vmmigration.ListReplicationCyclesRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.ListReplicationCyclesRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_replication_cycles
 
         Override in a subclass to manipulate the request or metadata
@@ -981,7 +1212,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_list_replication_cycles(self, response: vmmigration.ListReplicationCyclesResponse) -> vmmigration.ListReplicationCyclesResponse:
+    def post_list_replication_cycles(
+        self, response: vmmigration.ListReplicationCyclesResponse
+    ) -> vmmigration.ListReplicationCyclesResponse:
         """Post-rpc interceptor for list_replication_cycles
 
         Override in a subclass to manipulate the response
@@ -989,7 +1222,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_sources(self, request: vmmigration.ListSourcesRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.ListSourcesRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_sources(
+        self,
+        request: vmmigration.ListSourcesRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.ListSourcesRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_sources
 
         Override in a subclass to manipulate the request or metadata
@@ -997,7 +1235,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_list_sources(self, response: vmmigration.ListSourcesResponse) -> vmmigration.ListSourcesResponse:
+    def post_list_sources(
+        self, response: vmmigration.ListSourcesResponse
+    ) -> vmmigration.ListSourcesResponse:
         """Post-rpc interceptor for list_sources
 
         Override in a subclass to manipulate the response
@@ -1005,7 +1245,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_target_projects(self, request: vmmigration.ListTargetProjectsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.ListTargetProjectsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_target_projects(
+        self,
+        request: vmmigration.ListTargetProjectsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.ListTargetProjectsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_target_projects
 
         Override in a subclass to manipulate the request or metadata
@@ -1013,7 +1258,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_list_target_projects(self, response: vmmigration.ListTargetProjectsResponse) -> vmmigration.ListTargetProjectsResponse:
+    def post_list_target_projects(
+        self, response: vmmigration.ListTargetProjectsResponse
+    ) -> vmmigration.ListTargetProjectsResponse:
         """Post-rpc interceptor for list_target_projects
 
         Override in a subclass to manipulate the response
@@ -1021,7 +1268,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_utilization_reports(self, request: vmmigration.ListUtilizationReportsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.ListUtilizationReportsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_utilization_reports(
+        self,
+        request: vmmigration.ListUtilizationReportsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.ListUtilizationReportsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_utilization_reports
 
         Override in a subclass to manipulate the request or metadata
@@ -1029,7 +1281,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_list_utilization_reports(self, response: vmmigration.ListUtilizationReportsResponse) -> vmmigration.ListUtilizationReportsResponse:
+    def post_list_utilization_reports(
+        self, response: vmmigration.ListUtilizationReportsResponse
+    ) -> vmmigration.ListUtilizationReportsResponse:
         """Post-rpc interceptor for list_utilization_reports
 
         Override in a subclass to manipulate the response
@@ -1037,7 +1291,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_pause_migration(self, request: vmmigration.PauseMigrationRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.PauseMigrationRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_pause_migration(
+        self,
+        request: vmmigration.PauseMigrationRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.PauseMigrationRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for pause_migration
 
         Override in a subclass to manipulate the request or metadata
@@ -1045,7 +1304,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_pause_migration(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_pause_migration(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for pause_migration
 
         Override in a subclass to manipulate the response
@@ -1053,7 +1314,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_remove_group_migration(self, request: vmmigration.RemoveGroupMigrationRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.RemoveGroupMigrationRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_remove_group_migration(
+        self,
+        request: vmmigration.RemoveGroupMigrationRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.RemoveGroupMigrationRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for remove_group_migration
 
         Override in a subclass to manipulate the request or metadata
@@ -1061,7 +1327,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_remove_group_migration(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_remove_group_migration(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for remove_group_migration
 
         Override in a subclass to manipulate the response
@@ -1069,7 +1337,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_resume_migration(self, request: vmmigration.ResumeMigrationRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.ResumeMigrationRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_resume_migration(
+        self,
+        request: vmmigration.ResumeMigrationRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.ResumeMigrationRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for resume_migration
 
         Override in a subclass to manipulate the request or metadata
@@ -1077,7 +1350,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_resume_migration(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_resume_migration(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for resume_migration
 
         Override in a subclass to manipulate the response
@@ -1085,7 +1360,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_start_migration(self, request: vmmigration.StartMigrationRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.StartMigrationRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_start_migration(
+        self,
+        request: vmmigration.StartMigrationRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.StartMigrationRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for start_migration
 
         Override in a subclass to manipulate the request or metadata
@@ -1093,7 +1373,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_start_migration(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_start_migration(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for start_migration
 
         Override in a subclass to manipulate the response
@@ -1101,7 +1383,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_group(self, request: vmmigration.UpdateGroupRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.UpdateGroupRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_group(
+        self,
+        request: vmmigration.UpdateGroupRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.UpdateGroupRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_group
 
         Override in a subclass to manipulate the request or metadata
@@ -1109,7 +1396,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_update_group(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_update_group(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for update_group
 
         Override in a subclass to manipulate the response
@@ -1117,7 +1406,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_migrating_vm(self, request: vmmigration.UpdateMigratingVmRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.UpdateMigratingVmRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_migrating_vm(
+        self,
+        request: vmmigration.UpdateMigratingVmRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.UpdateMigratingVmRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_migrating_vm
 
         Override in a subclass to manipulate the request or metadata
@@ -1125,7 +1419,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_update_migrating_vm(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_update_migrating_vm(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for update_migrating_vm
 
         Override in a subclass to manipulate the response
@@ -1133,7 +1429,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_source(self, request: vmmigration.UpdateSourceRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.UpdateSourceRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_source(
+        self,
+        request: vmmigration.UpdateSourceRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.UpdateSourceRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_source
 
         Override in a subclass to manipulate the request or metadata
@@ -1141,7 +1442,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_update_source(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_update_source(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for update_source
 
         Override in a subclass to manipulate the response
@@ -1149,7 +1452,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_target_project(self, request: vmmigration.UpdateTargetProjectRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.UpdateTargetProjectRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_target_project(
+        self,
+        request: vmmigration.UpdateTargetProjectRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.UpdateTargetProjectRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_target_project
 
         Override in a subclass to manipulate the request or metadata
@@ -1157,7 +1465,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_update_target_project(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_update_target_project(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for update_target_project
 
         Override in a subclass to manipulate the response
@@ -1165,7 +1475,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_upgrade_appliance(self, request: vmmigration.UpgradeApplianceRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[vmmigration.UpgradeApplianceRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_upgrade_appliance(
+        self,
+        request: vmmigration.UpgradeApplianceRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[vmmigration.UpgradeApplianceRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for upgrade_appliance
 
         Override in a subclass to manipulate the request or metadata
@@ -1173,7 +1488,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_upgrade_appliance(self, response: operations_pb2.Operation) -> operations_pb2.Operation:
+    def post_upgrade_appliance(
+        self, response: operations_pb2.Operation
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for upgrade_appliance
 
         Override in a subclass to manipulate the response
@@ -1182,7 +1499,11 @@ class VmMigrationRestInterceptor:
         """
         return response
 
-    def pre_get_location(self, request: locations_pb2.GetLocationRequest, metadata: Sequence[Tuple[str, str]]) -> locations_pb2.Location:
+    def pre_get_location(
+        self,
+        request: locations_pb2.GetLocationRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> locations_pb2.Location:
         """Pre-rpc interceptor for get_location
 
         Override in a subclass to manipulate the request or metadata
@@ -1190,7 +1511,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_get_location(self, response: locations_pb2.GetLocationRequest) -> locations_pb2.Location:
+    def post_get_location(
+        self, response: locations_pb2.GetLocationRequest
+    ) -> locations_pb2.Location:
         """Post-rpc interceptor for get_location
 
         Override in a subclass to manipulate the response
@@ -1198,7 +1521,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_locations(self, request: locations_pb2.ListLocationsRequest, metadata: Sequence[Tuple[str, str]]) -> locations_pb2.ListLocationsResponse:
+
+    def pre_list_locations(
+        self,
+        request: locations_pb2.ListLocationsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> locations_pb2.ListLocationsResponse:
         """Pre-rpc interceptor for list_locations
 
         Override in a subclass to manipulate the request or metadata
@@ -1206,7 +1534,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_list_locations(self, response: locations_pb2.ListLocationsRequest) -> locations_pb2.ListLocationsResponse:
+    def post_list_locations(
+        self, response: locations_pb2.ListLocationsRequest
+    ) -> locations_pb2.ListLocationsResponse:
         """Post-rpc interceptor for list_locations
 
         Override in a subclass to manipulate the response
@@ -1214,7 +1544,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_cancel_operation(self, request: operations_pb2.CancelOperationRequest, metadata: Sequence[Tuple[str, str]]) -> None:
+
+    def pre_cancel_operation(
+        self,
+        request: operations_pb2.CancelOperationRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> None:
         """Pre-rpc interceptor for cancel_operation
 
         Override in a subclass to manipulate the request or metadata
@@ -1222,7 +1557,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_cancel_operation(self, response: operations_pb2.CancelOperationRequest) -> None:
+    def post_cancel_operation(
+        self, response: operations_pb2.CancelOperationRequest
+    ) -> None:
         """Post-rpc interceptor for cancel_operation
 
         Override in a subclass to manipulate the response
@@ -1230,7 +1567,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_delete_operation(self, request: operations_pb2.DeleteOperationRequest, metadata: Sequence[Tuple[str, str]]) -> None:
+
+    def pre_delete_operation(
+        self,
+        request: operations_pb2.DeleteOperationRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> None:
         """Pre-rpc interceptor for delete_operation
 
         Override in a subclass to manipulate the request or metadata
@@ -1238,7 +1580,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_delete_operation(self, response: operations_pb2.DeleteOperationRequest) -> None:
+    def post_delete_operation(
+        self, response: operations_pb2.DeleteOperationRequest
+    ) -> None:
         """Post-rpc interceptor for delete_operation
 
         Override in a subclass to manipulate the response
@@ -1246,7 +1590,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_operation(self, request: operations_pb2.GetOperationRequest, metadata: Sequence[Tuple[str, str]]) -> operations_pb2.Operation:
+
+    def pre_get_operation(
+        self,
+        request: operations_pb2.GetOperationRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> operations_pb2.Operation:
         """Pre-rpc interceptor for get_operation
 
         Override in a subclass to manipulate the request or metadata
@@ -1254,7 +1603,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_get_operation(self, response: operations_pb2.GetOperationRequest) -> operations_pb2.Operation:
+    def post_get_operation(
+        self, response: operations_pb2.GetOperationRequest
+    ) -> operations_pb2.Operation:
         """Post-rpc interceptor for get_operation
 
         Override in a subclass to manipulate the response
@@ -1262,7 +1613,12 @@ class VmMigrationRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_operations(self, request: operations_pb2.ListOperationsRequest, metadata: Sequence[Tuple[str, str]]) -> operations_pb2.ListOperationsResponse:
+
+    def pre_list_operations(
+        self,
+        request: operations_pb2.ListOperationsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> operations_pb2.ListOperationsResponse:
         """Pre-rpc interceptor for list_operations
 
         Override in a subclass to manipulate the request or metadata
@@ -1270,7 +1626,9 @@ class VmMigrationRestInterceptor:
         """
         return request, metadata
 
-    def post_list_operations(self, response: operations_pb2.ListOperationsRequest) -> operations_pb2.ListOperationsResponse:
+    def post_list_operations(
+        self, response: operations_pb2.ListOperationsRequest
+    ) -> operations_pb2.ListOperationsResponse:
         """Post-rpc interceptor for list_operations
 
         Override in a subclass to manipulate the response
@@ -1300,20 +1658,21 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
     """
 
-    def __init__(self, *,
-            host: str = 'vmmigration.googleapis.com',
-            credentials: Optional[ga_credentials.Credentials] = None,
-            credentials_file: Optional[str] = None,
-            scopes: Optional[Sequence[str]] = None,
-            client_cert_source_for_mtls: Optional[Callable[[
-                ], Tuple[bytes, bytes]]] = None,
-            quota_project_id: Optional[str] = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            always_use_jwt_access: Optional[bool] = False,
-            url_scheme: str = 'https',
-            interceptor: Optional[VmMigrationRestInterceptor] = None,
-            api_audience: Optional[str] = None,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        host: str = "vmmigration.googleapis.com",
+        credentials: Optional[ga_credentials.Credentials] = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        client_cert_source_for_mtls: Optional[Callable[[], Tuple[bytes, bytes]]] = None,
+        quota_project_id: Optional[str] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+        always_use_jwt_access: Optional[bool] = False,
+        url_scheme: str = "https",
+        interceptor: Optional[VmMigrationRestInterceptor] = None,
+        api_audience: Optional[str] = None,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -1352,7 +1711,9 @@ class VmMigrationRestTransport(VmMigrationTransport):
         # credentials object
         maybe_url_match = re.match("^(?P<scheme>http(?:s)?://)?(?P<host>.*)$", host)
         if maybe_url_match is None:
-            raise ValueError(f"Unexpected hostname structure: {host}")  # pragma: NO COVER
+            raise ValueError(
+                f"Unexpected hostname structure: {host}"
+            )  # pragma: NO COVER
 
         url_match_items = maybe_url_match.groupdict()
 
@@ -1363,10 +1724,11 @@ class VmMigrationRestTransport(VmMigrationTransport):
             credentials=credentials,
             client_info=client_info,
             always_use_jwt_access=always_use_jwt_access,
-            api_audience=api_audience
+            api_audience=api_audience,
         )
         self._session = AuthorizedSession(
-            self._credentials, default_host=self.DEFAULT_HOST)
+            self._credentials, default_host=self.DEFAULT_HOST
+        )
         self._operations_client: Optional[operations_v1.AbstractOperationsClient] = None
         if client_cert_source_for_mtls:
             self._session.configure_mtls_channel(client_cert_source_for_mtls)
@@ -1383,42 +1745,45 @@ class VmMigrationRestTransport(VmMigrationTransport):
         # Only create a new client if we do not already have one.
         if self._operations_client is None:
             http_options: Dict[str, List[Dict[str, str]]] = {
-                'google.longrunning.Operations.CancelOperation': [
+                "google.longrunning.Operations.CancelOperation": [
                     {
-                        'method': 'post',
-                        'uri': '/v1/{name=projects/*/locations/*/operations/*}:cancel',
-                        'body': '*',
+                        "method": "post",
+                        "uri": "/v1/{name=projects/*/locations/*/operations/*}:cancel",
+                        "body": "*",
                     },
                 ],
-                'google.longrunning.Operations.DeleteOperation': [
+                "google.longrunning.Operations.DeleteOperation": [
                     {
-                        'method': 'delete',
-                        'uri': '/v1/{name=projects/*/locations/*/operations/*}',
+                        "method": "delete",
+                        "uri": "/v1/{name=projects/*/locations/*/operations/*}",
                     },
                 ],
-                'google.longrunning.Operations.GetOperation': [
+                "google.longrunning.Operations.GetOperation": [
                     {
-                        'method': 'get',
-                        'uri': '/v1/{name=projects/*/locations/*/operations/*}',
+                        "method": "get",
+                        "uri": "/v1/{name=projects/*/locations/*/operations/*}",
                     },
                 ],
-                'google.longrunning.Operations.ListOperations': [
+                "google.longrunning.Operations.ListOperations": [
                     {
-                        'method': 'get',
-                        'uri': '/v1/{name=projects/*/locations/*}/operations',
+                        "method": "get",
+                        "uri": "/v1/{name=projects/*/locations/*}/operations",
                     },
                 ],
             }
 
             rest_transport = operations_v1.OperationsRestTransport(
-                    host=self._host,
-                    # use the credentials which are saved
-                    credentials=self._credentials,
-                    scopes=self._scopes,
-                    http_options=http_options,
-                    path_prefix="v1")
+                host=self._host,
+                # use the credentials which are saved
+                credentials=self._credentials,
+                scopes=self._scopes,
+                http_options=http_options,
+                path_prefix="v1",
+            )
 
-            self._operations_client = operations_v1.AbstractOperationsClient(transport=rest_transport)
+            self._operations_client = operations_v1.AbstractOperationsClient(
+                transport=rest_transport
+            )
 
         # Return the client from cache.
         return self._operations_client
@@ -1427,19 +1792,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("AddGroupMigration")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.AddGroupMigrationRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.AddGroupMigrationRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the add group migration method over HTTP.
 
             Args:
@@ -1461,46 +1831,51 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{group=projects/*/locations/*/groups/*}:addGroupMigration',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{group=projects/*/locations/*/groups/*}:addGroupMigration",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_add_group_migration(request, metadata)
+            request, metadata = self._interceptor.pre_add_group_migration(
+                request, metadata
+            )
             pb_request = vmmigration.AddGroupMigrationRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1517,19 +1892,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("CancelCloneJob")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.CancelCloneJobRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.CancelCloneJobRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the cancel clone job method over HTTP.
 
             Args:
@@ -1551,46 +1931,51 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{name=projects/*/locations/*/sources/*/migratingVms/*/cloneJobs/*}:cancel',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=projects/*/locations/*/sources/*/migratingVms/*/cloneJobs/*}:cancel",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_cancel_clone_job(request, metadata)
+            request, metadata = self._interceptor.pre_cancel_clone_job(
+                request, metadata
+            )
             pb_request = vmmigration.CancelCloneJobRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1607,19 +1992,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("CancelCutoverJob")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.CancelCutoverJobRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.CancelCutoverJobRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the cancel cutover job method over HTTP.
 
             Args:
@@ -1641,46 +2031,51 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{name=projects/*/locations/*/sources/*/migratingVms/*/cutoverJobs/*}:cancel',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=projects/*/locations/*/sources/*/migratingVms/*/cutoverJobs/*}:cancel",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_cancel_cutover_job(request, metadata)
+            request, metadata = self._interceptor.pre_cancel_cutover_job(
+                request, metadata
+            )
             pb_request = vmmigration.CancelCutoverJobRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1697,19 +2092,26 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("CreateCloneJob")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "cloneJobId" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "cloneJobId": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.CreateCloneJobRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.CreateCloneJobRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the create clone job method over HTTP.
 
             Args:
@@ -1731,46 +2133,51 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*/sources/*/migratingVms/*}/cloneJobs',
-                'body': 'clone_job',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*/sources/*/migratingVms/*}/cloneJobs",
+                    "body": "clone_job",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_clone_job(request, metadata)
+            request, metadata = self._interceptor.pre_create_clone_job(
+                request, metadata
+            )
             pb_request = vmmigration.CreateCloneJobRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1787,19 +2194,26 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("CreateCutoverJob")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "cutoverJobId" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "cutoverJobId": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.CreateCutoverJobRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.CreateCutoverJobRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the create cutover job method over HTTP.
 
             Args:
@@ -1821,46 +2235,51 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*/sources/*/migratingVms/*}/cutoverJobs',
-                'body': 'cutover_job',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*/sources/*/migratingVms/*}/cutoverJobs",
+                    "body": "cutover_job",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_cutover_job(request, metadata)
+            request, metadata = self._interceptor.pre_create_cutover_job(
+                request, metadata
+            )
             pb_request = vmmigration.CreateCutoverJobRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1877,81 +2296,93 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("CreateDatacenterConnector")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "datacenterConnectorId" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "datacenterConnectorId": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.CreateDatacenterConnectorRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.CreateDatacenterConnectorRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the create datacenter
-        connector method over HTTP.
+            connector method over HTTP.
 
-            Args:
-                request (~.vmmigration.CreateDatacenterConnectorRequest):
-                    The request object. Request message for
-                'CreateDatacenterConnector' request.
+                Args:
+                    request (~.vmmigration.CreateDatacenterConnectorRequest):
+                        The request object. Request message for
+                    'CreateDatacenterConnector' request.
 
-                retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                    should be retried.
-                timeout (float): The timeout for this request.
-                metadata (Sequence[Tuple[str, str]]): Strings which should be
-                    sent along with the request as metadata.
+                    retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                        should be retried.
+                    timeout (float): The timeout for this request.
+                    metadata (Sequence[Tuple[str, str]]): Strings which should be
+                        sent along with the request as metadata.
 
-            Returns:
-                ~.operations_pb2.Operation:
-                    This resource represents a
-                long-running operation that is the
-                result of a network API call.
+                Returns:
+                    ~.operations_pb2.Operation:
+                        This resource represents a
+                    long-running operation that is the
+                    result of a network API call.
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*/sources/*}/datacenterConnectors',
-                'body': 'datacenter_connector',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*/sources/*}/datacenterConnectors",
+                    "body": "datacenter_connector",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_datacenter_connector(request, metadata)
+            request, metadata = self._interceptor.pre_create_datacenter_connector(
+                request, metadata
+            )
             pb_request = vmmigration.CreateDatacenterConnectorRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1968,19 +2399,26 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("CreateGroup")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "groupId" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "groupId": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.CreateGroupRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.CreateGroupRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the create group method over HTTP.
 
             Args:
@@ -2002,11 +2440,12 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*}/groups',
-                'body': 'group',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*}/groups",
+                    "body": "group",
+                },
             ]
             request, metadata = self._interceptor.pre_create_group(request, metadata)
             pb_request = vmmigration.CreateGroupRequest.pb(request)
@@ -2015,33 +2454,35 @@ class VmMigrationRestTransport(VmMigrationTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2058,19 +2499,26 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("CreateMigratingVm")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "migratingVmId" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "migratingVmId": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.CreateMigratingVmRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.CreateMigratingVmRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the create migrating vm method over HTTP.
 
             Args:
@@ -2092,46 +2540,51 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*/sources/*}/migratingVms',
-                'body': 'migrating_vm',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*/sources/*}/migratingVms",
+                    "body": "migrating_vm",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_migrating_vm(request, metadata)
+            request, metadata = self._interceptor.pre_create_migrating_vm(
+                request, metadata
+            )
             pb_request = vmmigration.CreateMigratingVmRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2148,19 +2601,26 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("CreateSource")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "sourceId" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "sourceId": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.CreateSourceRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.CreateSourceRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the create source method over HTTP.
 
             Args:
@@ -2182,11 +2642,12 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*}/sources',
-                'body': 'source',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*}/sources",
+                    "body": "source",
+                },
             ]
             request, metadata = self._interceptor.pre_create_source(request, metadata)
             pb_request = vmmigration.CreateSourceRequest.pb(request)
@@ -2195,33 +2656,35 @@ class VmMigrationRestTransport(VmMigrationTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2238,19 +2701,26 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("CreateTargetProject")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "targetProjectId" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "targetProjectId": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.CreateTargetProjectRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.CreateTargetProjectRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the create target project method over HTTP.
 
             Args:
@@ -2272,46 +2742,51 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*}/targetProjects',
-                'body': 'target_project',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*}/targetProjects",
+                    "body": "target_project",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_target_project(request, metadata)
+            request, metadata = self._interceptor.pre_create_target_project(
+                request, metadata
+            )
             pb_request = vmmigration.CreateTargetProjectRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2328,19 +2803,26 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("CreateUtilizationReport")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "utilizationReportId" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "utilizationReportId": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.CreateUtilizationReportRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.CreateUtilizationReportRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the create utilization report method over HTTP.
 
             Args:
@@ -2362,46 +2844,51 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*/sources/*}/utilizationReports',
-                'body': 'utilization_report',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*/sources/*}/utilizationReports",
+                    "body": "utilization_report",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_utilization_report(request, metadata)
+            request, metadata = self._interceptor.pre_create_utilization_report(
+                request, metadata
+            )
             pb_request = vmmigration.CreateUtilizationReportRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2418,72 +2905,82 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("DeleteDatacenterConnector")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.DeleteDatacenterConnectorRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.DeleteDatacenterConnectorRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the delete datacenter
-        connector method over HTTP.
+            connector method over HTTP.
 
-            Args:
-                request (~.vmmigration.DeleteDatacenterConnectorRequest):
-                    The request object. Request message for
-                'DeleteDatacenterConnector' request.
+                Args:
+                    request (~.vmmigration.DeleteDatacenterConnectorRequest):
+                        The request object. Request message for
+                    'DeleteDatacenterConnector' request.
 
-                retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                    should be retried.
-                timeout (float): The timeout for this request.
-                metadata (Sequence[Tuple[str, str]]): Strings which should be
-                    sent along with the request as metadata.
+                    retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                        should be retried.
+                    timeout (float): The timeout for this request.
+                    metadata (Sequence[Tuple[str, str]]): Strings which should be
+                        sent along with the request as metadata.
 
-            Returns:
-                ~.operations_pb2.Operation:
-                    This resource represents a
-                long-running operation that is the
-                result of a network API call.
+                Returns:
+                    ~.operations_pb2.Operation:
+                        This resource represents a
+                    long-running operation that is the
+                    result of a network API call.
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/locations/*/sources/*/datacenterConnectors/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/locations/*/sources/*/datacenterConnectors/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_delete_datacenter_connector(request, metadata)
+            request, metadata = self._interceptor.pre_delete_datacenter_connector(
+                request, metadata
+            )
             pb_request = vmmigration.DeleteDatacenterConnectorRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2500,19 +2997,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("DeleteGroup")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.DeleteGroupRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.DeleteGroupRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the delete group method over HTTP.
 
             Args:
@@ -2534,37 +3036,40 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/locations/*/groups/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/locations/*/groups/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_delete_group(request, metadata)
             pb_request = vmmigration.DeleteGroupRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2581,19 +3086,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("DeleteMigratingVm")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.DeleteMigratingVmRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.DeleteMigratingVmRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the delete migrating vm method over HTTP.
 
             Args:
@@ -2615,37 +3125,42 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/locations/*/sources/*/migratingVms/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/locations/*/sources/*/migratingVms/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_delete_migrating_vm(request, metadata)
+            request, metadata = self._interceptor.pre_delete_migrating_vm(
+                request, metadata
+            )
             pb_request = vmmigration.DeleteMigratingVmRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2662,19 +3177,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("DeleteSource")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.DeleteSourceRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.DeleteSourceRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the delete source method over HTTP.
 
             Args:
@@ -2696,37 +3216,40 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/locations/*/sources/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/locations/*/sources/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_delete_source(request, metadata)
             pb_request = vmmigration.DeleteSourceRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2743,19 +3266,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("DeleteTargetProject")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.DeleteTargetProjectRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.DeleteTargetProjectRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the delete target project method over HTTP.
 
             Args:
@@ -2777,37 +3305,42 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/locations/*/targetProjects/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/locations/*/targetProjects/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_delete_target_project(request, metadata)
+            request, metadata = self._interceptor.pre_delete_target_project(
+                request, metadata
+            )
             pb_request = vmmigration.DeleteTargetProjectRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2824,19 +3357,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("DeleteUtilizationReport")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.DeleteUtilizationReportRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.DeleteUtilizationReportRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the delete utilization report method over HTTP.
 
             Args:
@@ -2858,37 +3396,42 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/locations/*/sources/*/utilizationReports/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/locations/*/sources/*/utilizationReports/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_delete_utilization_report(request, metadata)
+            request, metadata = self._interceptor.pre_delete_utilization_report(
+                request, metadata
+            )
             pb_request = vmmigration.DeleteUtilizationReportRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2905,19 +3448,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("FetchInventory")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.FetchInventoryRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> vmmigration.FetchInventoryResponse:
+        def __call__(
+            self,
+            request: vmmigration.FetchInventoryRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> vmmigration.FetchInventoryResponse:
             r"""Call the fetch inventory method over HTTP.
 
             Args:
@@ -2938,37 +3486,40 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{source=projects/*/locations/*/sources/*}:fetchInventory',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{source=projects/*/locations/*/sources/*}:fetchInventory",
+                },
             ]
             request, metadata = self._interceptor.pre_fetch_inventory(request, metadata)
             pb_request = vmmigration.FetchInventoryRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2987,19 +3538,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("FinalizeMigration")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.FinalizeMigrationRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.FinalizeMigrationRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the finalize migration method over HTTP.
 
             Args:
@@ -3021,46 +3577,51 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{migrating_vm=projects/*/locations/*/sources/*/migratingVms/*}:finalizeMigration',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{migrating_vm=projects/*/locations/*/sources/*/migratingVms/*}:finalizeMigration",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_finalize_migration(request, metadata)
+            request, metadata = self._interceptor.pre_finalize_migration(
+                request, metadata
+            )
             pb_request = vmmigration.FinalizeMigrationRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3077,19 +3638,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("GetCloneJob")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.GetCloneJobRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> vmmigration.CloneJob:
+        def __call__(
+            self,
+            request: vmmigration.GetCloneJobRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> vmmigration.CloneJob:
             r"""Call the get clone job method over HTTP.
 
             Args:
@@ -3121,37 +3687,40 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/sources/*/migratingVms/*/cloneJobs/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/sources/*/migratingVms/*/cloneJobs/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_clone_job(request, metadata)
             pb_request = vmmigration.GetCloneJobRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3170,19 +3739,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("GetCutoverJob")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.GetCutoverJobRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> vmmigration.CutoverJob:
+        def __call__(
+            self,
+            request: vmmigration.GetCutoverJobRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> vmmigration.CutoverJob:
             r"""Call the get cutover job method over HTTP.
 
             Args:
@@ -3207,37 +3781,40 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/sources/*/migratingVms/*/cutoverJobs/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/sources/*/migratingVms/*/cutoverJobs/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_cutover_job(request, metadata)
             pb_request = vmmigration.GetCutoverJobRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3256,19 +3833,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("GetDatacenterConnector")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.GetDatacenterConnectorRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> vmmigration.DatacenterConnector:
+        def __call__(
+            self,
+            request: vmmigration.GetDatacenterConnectorRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> vmmigration.DatacenterConnector:
             r"""Call the get datacenter connector method over HTTP.
 
             Args:
@@ -3294,37 +3876,42 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/sources/*/datacenterConnectors/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/sources/*/datacenterConnectors/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_get_datacenter_connector(request, metadata)
+            request, metadata = self._interceptor.pre_get_datacenter_connector(
+                request, metadata
+            )
             pb_request = vmmigration.GetDatacenterConnectorRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3343,19 +3930,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("GetGroup")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.GetGroupRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> vmmigration.Group:
+        def __call__(
+            self,
+            request: vmmigration.GetGroupRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> vmmigration.Group:
             r"""Call the get group method over HTTP.
 
             Args:
@@ -3377,37 +3969,40 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/groups/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/groups/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_group(request, metadata)
             pb_request = vmmigration.GetGroupRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3426,19 +4021,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("GetMigratingVm")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.GetMigratingVmRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> vmmigration.MigratingVm:
+        def __call__(
+            self,
+            request: vmmigration.GetMigratingVmRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> vmmigration.MigratingVm:
             r"""Call the get migrating vm method over HTTP.
 
             Args:
@@ -3460,37 +4060,42 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/sources/*/migratingVms/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/sources/*/migratingVms/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_get_migrating_vm(request, metadata)
+            request, metadata = self._interceptor.pre_get_migrating_vm(
+                request, metadata
+            )
             pb_request = vmmigration.GetMigratingVmRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3509,19 +4114,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("GetReplicationCycle")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.GetReplicationCycleRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> vmmigration.ReplicationCycle:
+        def __call__(
+            self,
+            request: vmmigration.GetReplicationCycleRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> vmmigration.ReplicationCycle:
             r"""Call the get replication cycle method over HTTP.
 
             Args:
@@ -3543,37 +4153,42 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/sources/*/migratingVms/*/replicationCycles/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/sources/*/migratingVms/*/replicationCycles/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_get_replication_cycle(request, metadata)
+            request, metadata = self._interceptor.pre_get_replication_cycle(
+                request, metadata
+            )
             pb_request = vmmigration.GetReplicationCycleRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3592,19 +4207,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("GetSource")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.GetSourceRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> vmmigration.Source:
+        def __call__(
+            self,
+            request: vmmigration.GetSourceRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> vmmigration.Source:
             r"""Call the get source method over HTTP.
 
             Args:
@@ -3627,37 +4247,40 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/sources/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/sources/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_source(request, metadata)
             pb_request = vmmigration.GetSourceRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3676,19 +4299,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("GetTargetProject")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.GetTargetProjectRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> vmmigration.TargetProject:
+        def __call__(
+            self,
+            request: vmmigration.GetTargetProjectRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> vmmigration.TargetProject:
             r"""Call the get target project method over HTTP.
 
             Args:
@@ -3710,37 +4338,42 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/targetProjects/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/targetProjects/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_get_target_project(request, metadata)
+            request, metadata = self._interceptor.pre_get_target_project(
+                request, metadata
+            )
             pb_request = vmmigration.GetTargetProjectRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3759,19 +4392,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("GetUtilizationReport")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.GetUtilizationReportRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> vmmigration.UtilizationReport:
+        def __call__(
+            self,
+            request: vmmigration.GetUtilizationReportRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> vmmigration.UtilizationReport:
             r"""Call the get utilization report method over HTTP.
 
             Args:
@@ -3793,37 +4431,42 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/sources/*/utilizationReports/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/sources/*/utilizationReports/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_get_utilization_report(request, metadata)
+            request, metadata = self._interceptor.pre_get_utilization_report(
+                request, metadata
+            )
             pb_request = vmmigration.GetUtilizationReportRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3842,19 +4485,26 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("ListCloneJobs")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "pageToken" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "pageToken": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.ListCloneJobsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> vmmigration.ListCloneJobsResponse:
+        def __call__(
+            self,
+            request: vmmigration.ListCloneJobsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> vmmigration.ListCloneJobsResponse:
             r"""Call the list clone jobs method over HTTP.
 
             Args:
@@ -3875,37 +4525,40 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*/sources/*/migratingVms/*}/cloneJobs',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*/sources/*/migratingVms/*}/cloneJobs",
+                },
             ]
             request, metadata = self._interceptor.pre_list_clone_jobs(request, metadata)
             pb_request = vmmigration.ListCloneJobsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3924,19 +4577,26 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("ListCutoverJobs")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "pageToken" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "pageToken": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.ListCutoverJobsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> vmmigration.ListCutoverJobsResponse:
+        def __call__(
+            self,
+            request: vmmigration.ListCutoverJobsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> vmmigration.ListCutoverJobsResponse:
             r"""Call the list cutover jobs method over HTTP.
 
             Args:
@@ -3957,37 +4617,42 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*/sources/*/migratingVms/*}/cutoverJobs',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*/sources/*/migratingVms/*}/cutoverJobs",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_cutover_jobs(request, metadata)
+            request, metadata = self._interceptor.pre_list_cutover_jobs(
+                request, metadata
+            )
             pb_request = vmmigration.ListCutoverJobsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4006,71 +4671,83 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("ListDatacenterConnectors")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "pageToken" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "pageToken": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.ListDatacenterConnectorsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> vmmigration.ListDatacenterConnectorsResponse:
+        def __call__(
+            self,
+            request: vmmigration.ListDatacenterConnectorsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> vmmigration.ListDatacenterConnectorsResponse:
             r"""Call the list datacenter
-        connectors method over HTTP.
+            connectors method over HTTP.
 
-            Args:
-                request (~.vmmigration.ListDatacenterConnectorsRequest):
-                    The request object. Request message for
-                'ListDatacenterConnectors' request.
+                Args:
+                    request (~.vmmigration.ListDatacenterConnectorsRequest):
+                        The request object. Request message for
+                    'ListDatacenterConnectors' request.
 
-                retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                    should be retried.
-                timeout (float): The timeout for this request.
-                metadata (Sequence[Tuple[str, str]]): Strings which should be
-                    sent along with the request as metadata.
+                    retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                        should be retried.
+                    timeout (float): The timeout for this request.
+                    metadata (Sequence[Tuple[str, str]]): Strings which should be
+                        sent along with the request as metadata.
 
-            Returns:
-                ~.vmmigration.ListDatacenterConnectorsResponse:
-                    Response message for
-                'ListDatacenterConnectors' request.
+                Returns:
+                    ~.vmmigration.ListDatacenterConnectorsResponse:
+                        Response message for
+                    'ListDatacenterConnectors' request.
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*/sources/*}/datacenterConnectors',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*/sources/*}/datacenterConnectors",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_datacenter_connectors(request, metadata)
+            request, metadata = self._interceptor.pre_list_datacenter_connectors(
+                request, metadata
+            )
             pb_request = vmmigration.ListDatacenterConnectorsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4089,19 +4766,26 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("ListGroups")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "pageToken" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "pageToken": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.ListGroupsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> vmmigration.ListGroupsResponse:
+        def __call__(
+            self,
+            request: vmmigration.ListGroupsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> vmmigration.ListGroupsResponse:
             r"""Call the list groups method over HTTP.
 
             Args:
@@ -4122,37 +4806,40 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*}/groups',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*}/groups",
+                },
             ]
             request, metadata = self._interceptor.pre_list_groups(request, metadata)
             pb_request = vmmigration.ListGroupsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4171,19 +4858,26 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("ListMigratingVms")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "pageToken" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "pageToken": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.ListMigratingVmsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> vmmigration.ListMigratingVmsResponse:
+        def __call__(
+            self,
+            request: vmmigration.ListMigratingVmsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> vmmigration.ListMigratingVmsResponse:
             r"""Call the list migrating vms method over HTTP.
 
             Args:
@@ -4204,37 +4898,42 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*/sources/*}/migratingVms',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*/sources/*}/migratingVms",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_migrating_vms(request, metadata)
+            request, metadata = self._interceptor.pre_list_migrating_vms(
+                request, metadata
+            )
             pb_request = vmmigration.ListMigratingVmsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4253,19 +4952,26 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("ListReplicationCycles")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "pageToken" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "pageToken": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.ListReplicationCyclesRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> vmmigration.ListReplicationCyclesResponse:
+        def __call__(
+            self,
+            request: vmmigration.ListReplicationCyclesRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> vmmigration.ListReplicationCyclesResponse:
             r"""Call the list replication cycles method over HTTP.
 
             Args:
@@ -4286,37 +4992,42 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*/sources/*/migratingVms/*}/replicationCycles',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*/sources/*/migratingVms/*}/replicationCycles",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_replication_cycles(request, metadata)
+            request, metadata = self._interceptor.pre_list_replication_cycles(
+                request, metadata
+            )
             pb_request = vmmigration.ListReplicationCyclesRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4335,19 +5046,26 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("ListSources")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "pageToken" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "pageToken": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.ListSourcesRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> vmmigration.ListSourcesResponse:
+        def __call__(
+            self,
+            request: vmmigration.ListSourcesRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> vmmigration.ListSourcesResponse:
             r"""Call the list sources method over HTTP.
 
             Args:
@@ -4368,37 +5086,40 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*}/sources',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*}/sources",
+                },
             ]
             request, metadata = self._interceptor.pre_list_sources(request, metadata)
             pb_request = vmmigration.ListSourcesRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4417,19 +5138,26 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("ListTargetProjects")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "pageToken" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "pageToken": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.ListTargetProjectsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> vmmigration.ListTargetProjectsResponse:
+        def __call__(
+            self,
+            request: vmmigration.ListTargetProjectsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> vmmigration.ListTargetProjectsResponse:
             r"""Call the list target projects method over HTTP.
 
             Args:
@@ -4450,37 +5178,42 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*}/targetProjects',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*}/targetProjects",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_target_projects(request, metadata)
+            request, metadata = self._interceptor.pre_list_target_projects(
+                request, metadata
+            )
             pb_request = vmmigration.ListTargetProjectsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4499,19 +5232,26 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("ListUtilizationReports")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "pageToken" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "pageToken": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.ListUtilizationReportsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> vmmigration.ListUtilizationReportsResponse:
+        def __call__(
+            self,
+            request: vmmigration.ListUtilizationReportsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> vmmigration.ListUtilizationReportsResponse:
             r"""Call the list utilization reports method over HTTP.
 
             Args:
@@ -4532,37 +5272,42 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*/sources/*}/utilizationReports',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*/sources/*}/utilizationReports",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_utilization_reports(request, metadata)
+            request, metadata = self._interceptor.pre_list_utilization_reports(
+                request, metadata
+            )
             pb_request = vmmigration.ListUtilizationReportsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4581,19 +5326,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("PauseMigration")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.PauseMigrationRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.PauseMigrationRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the pause migration method over HTTP.
 
             Args:
@@ -4615,11 +5365,12 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{migrating_vm=projects/*/locations/*/sources/*/migratingVms/*}:pauseMigration',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{migrating_vm=projects/*/locations/*/sources/*/migratingVms/*}:pauseMigration",
+                    "body": "*",
+                },
             ]
             request, metadata = self._interceptor.pre_pause_migration(request, metadata)
             pb_request = vmmigration.PauseMigrationRequest.pb(request)
@@ -4628,33 +5379,35 @@ class VmMigrationRestTransport(VmMigrationTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4671,19 +5424,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("RemoveGroupMigration")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.RemoveGroupMigrationRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.RemoveGroupMigrationRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the remove group migration method over HTTP.
 
             Args:
@@ -4705,46 +5463,51 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{group=projects/*/locations/*/groups/*}:removeGroupMigration',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{group=projects/*/locations/*/groups/*}:removeGroupMigration",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_remove_group_migration(request, metadata)
+            request, metadata = self._interceptor.pre_remove_group_migration(
+                request, metadata
+            )
             pb_request = vmmigration.RemoveGroupMigrationRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4761,19 +5524,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("ResumeMigration")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.ResumeMigrationRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.ResumeMigrationRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the resume migration method over HTTP.
 
             Args:
@@ -4795,46 +5563,51 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{migrating_vm=projects/*/locations/*/sources/*/migratingVms/*}:resumeMigration',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{migrating_vm=projects/*/locations/*/sources/*/migratingVms/*}:resumeMigration",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_resume_migration(request, metadata)
+            request, metadata = self._interceptor.pre_resume_migration(
+                request, metadata
+            )
             pb_request = vmmigration.ResumeMigrationRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4851,19 +5624,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("StartMigration")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.StartMigrationRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.StartMigrationRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the start migration method over HTTP.
 
             Args:
@@ -4885,11 +5663,12 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{migrating_vm=projects/*/locations/*/sources/*/migratingVms/*}:startMigration',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{migrating_vm=projects/*/locations/*/sources/*/migratingVms/*}:startMigration",
+                    "body": "*",
+                },
             ]
             request, metadata = self._interceptor.pre_start_migration(request, metadata)
             pb_request = vmmigration.StartMigrationRequest.pb(request)
@@ -4898,33 +5677,35 @@ class VmMigrationRestTransport(VmMigrationTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -4941,19 +5722,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("UpdateGroup")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.UpdateGroupRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.UpdateGroupRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the update group method over HTTP.
 
             Args:
@@ -4975,11 +5761,12 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1/{group.name=projects/*/locations/*/groups/*}',
-                'body': 'group',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1/{group.name=projects/*/locations/*/groups/*}",
+                    "body": "group",
+                },
             ]
             request, metadata = self._interceptor.pre_update_group(request, metadata)
             pb_request = vmmigration.UpdateGroupRequest.pb(request)
@@ -4988,33 +5775,35 @@ class VmMigrationRestTransport(VmMigrationTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -5031,19 +5820,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("UpdateMigratingVm")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.UpdateMigratingVmRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.UpdateMigratingVmRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the update migrating vm method over HTTP.
 
             Args:
@@ -5065,46 +5859,51 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1/{migrating_vm.name=projects/*/locations/*/sources/*/migratingVms/*}',
-                'body': 'migrating_vm',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1/{migrating_vm.name=projects/*/locations/*/sources/*/migratingVms/*}",
+                    "body": "migrating_vm",
+                },
             ]
-            request, metadata = self._interceptor.pre_update_migrating_vm(request, metadata)
+            request, metadata = self._interceptor.pre_update_migrating_vm(
+                request, metadata
+            )
             pb_request = vmmigration.UpdateMigratingVmRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -5121,19 +5920,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("UpdateSource")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.UpdateSourceRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.UpdateSourceRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the update source method over HTTP.
 
             Args:
@@ -5155,11 +5959,12 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1/{source.name=projects/*/locations/*/sources/*}',
-                'body': 'source',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1/{source.name=projects/*/locations/*/sources/*}",
+                    "body": "source",
+                },
             ]
             request, metadata = self._interceptor.pre_update_source(request, metadata)
             pb_request = vmmigration.UpdateSourceRequest.pb(request)
@@ -5168,33 +5973,35 @@ class VmMigrationRestTransport(VmMigrationTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -5211,19 +6018,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("UpdateTargetProject")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.UpdateTargetProjectRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.UpdateTargetProjectRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the update target project method over HTTP.
 
             Args:
@@ -5245,46 +6057,51 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1/{target_project.name=projects/*/locations/*/targetProjects/*}',
-                'body': 'target_project',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1/{target_project.name=projects/*/locations/*/targetProjects/*}",
+                    "body": "target_project",
+                },
             ]
-            request, metadata = self._interceptor.pre_update_target_project(request, metadata)
+            request, metadata = self._interceptor.pre_update_target_project(
+                request, metadata
+            )
             pb_request = vmmigration.UpdateTargetProjectRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -5301,19 +6118,24 @@ class VmMigrationRestTransport(VmMigrationTransport):
         def __hash__(self):
             return hash("UpgradeAppliance")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: vmmigration.UpgradeApplianceRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: vmmigration.UpgradeApplianceRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
             r"""Call the upgrade appliance method over HTTP.
 
             Args:
@@ -5335,46 +6157,51 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{datacenter_connector=projects/*/locations/*/sources/*/datacenterConnectors/*}:upgradeAppliance',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{datacenter_connector=projects/*/locations/*/sources/*/datacenterConnectors/*}:upgradeAppliance",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_upgrade_appliance(request, metadata)
+            request, metadata = self._interceptor.pre_upgrade_appliance(
+                request, metadata
+            )
             pb_request = vmmigration.UpgradeApplianceRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -5388,384 +6215,417 @@ class VmMigrationRestTransport(VmMigrationTransport):
             return resp
 
     @property
-    def add_group_migration(self) -> Callable[
-            [vmmigration.AddGroupMigrationRequest],
-            operations_pb2.Operation]:
+    def add_group_migration(
+        self,
+    ) -> Callable[[vmmigration.AddGroupMigrationRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._AddGroupMigration(self._session, self._host, self._interceptor) # type: ignore
+        return self._AddGroupMigration(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def cancel_clone_job(self) -> Callable[
-            [vmmigration.CancelCloneJobRequest],
-            operations_pb2.Operation]:
+    def cancel_clone_job(
+        self,
+    ) -> Callable[[vmmigration.CancelCloneJobRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CancelCloneJob(self._session, self._host, self._interceptor) # type: ignore
+        return self._CancelCloneJob(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def cancel_cutover_job(self) -> Callable[
-            [vmmigration.CancelCutoverJobRequest],
-            operations_pb2.Operation]:
+    def cancel_cutover_job(
+        self,
+    ) -> Callable[[vmmigration.CancelCutoverJobRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CancelCutoverJob(self._session, self._host, self._interceptor) # type: ignore
+        return self._CancelCutoverJob(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_clone_job(self) -> Callable[
-            [vmmigration.CreateCloneJobRequest],
-            operations_pb2.Operation]:
+    def create_clone_job(
+        self,
+    ) -> Callable[[vmmigration.CreateCloneJobRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateCloneJob(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateCloneJob(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_cutover_job(self) -> Callable[
-            [vmmigration.CreateCutoverJobRequest],
-            operations_pb2.Operation]:
+    def create_cutover_job(
+        self,
+    ) -> Callable[[vmmigration.CreateCutoverJobRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateCutoverJob(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateCutoverJob(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_datacenter_connector(self) -> Callable[
-            [vmmigration.CreateDatacenterConnectorRequest],
-            operations_pb2.Operation]:
+    def create_datacenter_connector(
+        self,
+    ) -> Callable[
+        [vmmigration.CreateDatacenterConnectorRequest], operations_pb2.Operation
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateDatacenterConnector(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateDatacenterConnector(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_group(self) -> Callable[
-            [vmmigration.CreateGroupRequest],
-            operations_pb2.Operation]:
+    def create_group(
+        self,
+    ) -> Callable[[vmmigration.CreateGroupRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateGroup(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateGroup(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_migrating_vm(self) -> Callable[
-            [vmmigration.CreateMigratingVmRequest],
-            operations_pb2.Operation]:
+    def create_migrating_vm(
+        self,
+    ) -> Callable[[vmmigration.CreateMigratingVmRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateMigratingVm(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateMigratingVm(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_source(self) -> Callable[
-            [vmmigration.CreateSourceRequest],
-            operations_pb2.Operation]:
+    def create_source(
+        self,
+    ) -> Callable[[vmmigration.CreateSourceRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateSource(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateSource(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_target_project(self) -> Callable[
-            [vmmigration.CreateTargetProjectRequest],
-            operations_pb2.Operation]:
+    def create_target_project(
+        self,
+    ) -> Callable[[vmmigration.CreateTargetProjectRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateTargetProject(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateTargetProject(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_utilization_report(self) -> Callable[
-            [vmmigration.CreateUtilizationReportRequest],
-            operations_pb2.Operation]:
+    def create_utilization_report(
+        self,
+    ) -> Callable[
+        [vmmigration.CreateUtilizationReportRequest], operations_pb2.Operation
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateUtilizationReport(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateUtilizationReport(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_datacenter_connector(self) -> Callable[
-            [vmmigration.DeleteDatacenterConnectorRequest],
-            operations_pb2.Operation]:
+    def delete_datacenter_connector(
+        self,
+    ) -> Callable[
+        [vmmigration.DeleteDatacenterConnectorRequest], operations_pb2.Operation
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteDatacenterConnector(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteDatacenterConnector(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_group(self) -> Callable[
-            [vmmigration.DeleteGroupRequest],
-            operations_pb2.Operation]:
+    def delete_group(
+        self,
+    ) -> Callable[[vmmigration.DeleteGroupRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteGroup(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteGroup(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_migrating_vm(self) -> Callable[
-            [vmmigration.DeleteMigratingVmRequest],
-            operations_pb2.Operation]:
+    def delete_migrating_vm(
+        self,
+    ) -> Callable[[vmmigration.DeleteMigratingVmRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteMigratingVm(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteMigratingVm(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_source(self) -> Callable[
-            [vmmigration.DeleteSourceRequest],
-            operations_pb2.Operation]:
+    def delete_source(
+        self,
+    ) -> Callable[[vmmigration.DeleteSourceRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteSource(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteSource(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_target_project(self) -> Callable[
-            [vmmigration.DeleteTargetProjectRequest],
-            operations_pb2.Operation]:
+    def delete_target_project(
+        self,
+    ) -> Callable[[vmmigration.DeleteTargetProjectRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteTargetProject(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteTargetProject(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def delete_utilization_report(self) -> Callable[
-            [vmmigration.DeleteUtilizationReportRequest],
-            operations_pb2.Operation]:
+    def delete_utilization_report(
+        self,
+    ) -> Callable[
+        [vmmigration.DeleteUtilizationReportRequest], operations_pb2.Operation
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DeleteUtilizationReport(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteUtilizationReport(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def fetch_inventory(self) -> Callable[
-            [vmmigration.FetchInventoryRequest],
-            vmmigration.FetchInventoryResponse]:
+    def fetch_inventory(
+        self,
+    ) -> Callable[
+        [vmmigration.FetchInventoryRequest], vmmigration.FetchInventoryResponse
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._FetchInventory(self._session, self._host, self._interceptor) # type: ignore
+        return self._FetchInventory(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def finalize_migration(self) -> Callable[
-            [vmmigration.FinalizeMigrationRequest],
-            operations_pb2.Operation]:
+    def finalize_migration(
+        self,
+    ) -> Callable[[vmmigration.FinalizeMigrationRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._FinalizeMigration(self._session, self._host, self._interceptor) # type: ignore
+        return self._FinalizeMigration(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_clone_job(self) -> Callable[
-            [vmmigration.GetCloneJobRequest],
-            vmmigration.CloneJob]:
+    def get_clone_job(
+        self,
+    ) -> Callable[[vmmigration.GetCloneJobRequest], vmmigration.CloneJob]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetCloneJob(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetCloneJob(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_cutover_job(self) -> Callable[
-            [vmmigration.GetCutoverJobRequest],
-            vmmigration.CutoverJob]:
+    def get_cutover_job(
+        self,
+    ) -> Callable[[vmmigration.GetCutoverJobRequest], vmmigration.CutoverJob]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetCutoverJob(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetCutoverJob(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_datacenter_connector(self) -> Callable[
-            [vmmigration.GetDatacenterConnectorRequest],
-            vmmigration.DatacenterConnector]:
+    def get_datacenter_connector(
+        self,
+    ) -> Callable[
+        [vmmigration.GetDatacenterConnectorRequest], vmmigration.DatacenterConnector
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetDatacenterConnector(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetDatacenterConnector(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_group(self) -> Callable[
-            [vmmigration.GetGroupRequest],
-            vmmigration.Group]:
+    def get_group(self) -> Callable[[vmmigration.GetGroupRequest], vmmigration.Group]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetGroup(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetGroup(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_migrating_vm(self) -> Callable[
-            [vmmigration.GetMigratingVmRequest],
-            vmmigration.MigratingVm]:
+    def get_migrating_vm(
+        self,
+    ) -> Callable[[vmmigration.GetMigratingVmRequest], vmmigration.MigratingVm]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetMigratingVm(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetMigratingVm(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_replication_cycle(self) -> Callable[
-            [vmmigration.GetReplicationCycleRequest],
-            vmmigration.ReplicationCycle]:
+    def get_replication_cycle(
+        self,
+    ) -> Callable[
+        [vmmigration.GetReplicationCycleRequest], vmmigration.ReplicationCycle
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetReplicationCycle(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetReplicationCycle(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_source(self) -> Callable[
-            [vmmigration.GetSourceRequest],
-            vmmigration.Source]:
+    def get_source(
+        self,
+    ) -> Callable[[vmmigration.GetSourceRequest], vmmigration.Source]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetSource(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetSource(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_target_project(self) -> Callable[
-            [vmmigration.GetTargetProjectRequest],
-            vmmigration.TargetProject]:
+    def get_target_project(
+        self,
+    ) -> Callable[[vmmigration.GetTargetProjectRequest], vmmigration.TargetProject]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetTargetProject(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetTargetProject(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_utilization_report(self) -> Callable[
-            [vmmigration.GetUtilizationReportRequest],
-            vmmigration.UtilizationReport]:
+    def get_utilization_report(
+        self,
+    ) -> Callable[
+        [vmmigration.GetUtilizationReportRequest], vmmigration.UtilizationReport
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetUtilizationReport(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetUtilizationReport(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_clone_jobs(self) -> Callable[
-            [vmmigration.ListCloneJobsRequest],
-            vmmigration.ListCloneJobsResponse]:
+    def list_clone_jobs(
+        self,
+    ) -> Callable[
+        [vmmigration.ListCloneJobsRequest], vmmigration.ListCloneJobsResponse
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListCloneJobs(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListCloneJobs(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_cutover_jobs(self) -> Callable[
-            [vmmigration.ListCutoverJobsRequest],
-            vmmigration.ListCutoverJobsResponse]:
+    def list_cutover_jobs(
+        self,
+    ) -> Callable[
+        [vmmigration.ListCutoverJobsRequest], vmmigration.ListCutoverJobsResponse
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListCutoverJobs(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListCutoverJobs(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_datacenter_connectors(self) -> Callable[
-            [vmmigration.ListDatacenterConnectorsRequest],
-            vmmigration.ListDatacenterConnectorsResponse]:
+    def list_datacenter_connectors(
+        self,
+    ) -> Callable[
+        [vmmigration.ListDatacenterConnectorsRequest],
+        vmmigration.ListDatacenterConnectorsResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListDatacenterConnectors(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListDatacenterConnectors(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_groups(self) -> Callable[
-            [vmmigration.ListGroupsRequest],
-            vmmigration.ListGroupsResponse]:
+    def list_groups(
+        self,
+    ) -> Callable[[vmmigration.ListGroupsRequest], vmmigration.ListGroupsResponse]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListGroups(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListGroups(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_migrating_vms(self) -> Callable[
-            [vmmigration.ListMigratingVmsRequest],
-            vmmigration.ListMigratingVmsResponse]:
+    def list_migrating_vms(
+        self,
+    ) -> Callable[
+        [vmmigration.ListMigratingVmsRequest], vmmigration.ListMigratingVmsResponse
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListMigratingVms(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListMigratingVms(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_replication_cycles(self) -> Callable[
-            [vmmigration.ListReplicationCyclesRequest],
-            vmmigration.ListReplicationCyclesResponse]:
+    def list_replication_cycles(
+        self,
+    ) -> Callable[
+        [vmmigration.ListReplicationCyclesRequest],
+        vmmigration.ListReplicationCyclesResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListReplicationCycles(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListReplicationCycles(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_sources(self) -> Callable[
-            [vmmigration.ListSourcesRequest],
-            vmmigration.ListSourcesResponse]:
+    def list_sources(
+        self,
+    ) -> Callable[[vmmigration.ListSourcesRequest], vmmigration.ListSourcesResponse]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListSources(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListSources(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_target_projects(self) -> Callable[
-            [vmmigration.ListTargetProjectsRequest],
-            vmmigration.ListTargetProjectsResponse]:
+    def list_target_projects(
+        self,
+    ) -> Callable[
+        [vmmigration.ListTargetProjectsRequest], vmmigration.ListTargetProjectsResponse
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListTargetProjects(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListTargetProjects(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_utilization_reports(self) -> Callable[
-            [vmmigration.ListUtilizationReportsRequest],
-            vmmigration.ListUtilizationReportsResponse]:
+    def list_utilization_reports(
+        self,
+    ) -> Callable[
+        [vmmigration.ListUtilizationReportsRequest],
+        vmmigration.ListUtilizationReportsResponse,
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListUtilizationReports(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListUtilizationReports(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def pause_migration(self) -> Callable[
-            [vmmigration.PauseMigrationRequest],
-            operations_pb2.Operation]:
+    def pause_migration(
+        self,
+    ) -> Callable[[vmmigration.PauseMigrationRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._PauseMigration(self._session, self._host, self._interceptor) # type: ignore
+        return self._PauseMigration(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def remove_group_migration(self) -> Callable[
-            [vmmigration.RemoveGroupMigrationRequest],
-            operations_pb2.Operation]:
+    def remove_group_migration(
+        self,
+    ) -> Callable[[vmmigration.RemoveGroupMigrationRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._RemoveGroupMigration(self._session, self._host, self._interceptor) # type: ignore
+        return self._RemoveGroupMigration(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def resume_migration(self) -> Callable[
-            [vmmigration.ResumeMigrationRequest],
-            operations_pb2.Operation]:
+    def resume_migration(
+        self,
+    ) -> Callable[[vmmigration.ResumeMigrationRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ResumeMigration(self._session, self._host, self._interceptor) # type: ignore
+        return self._ResumeMigration(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def start_migration(self) -> Callable[
-            [vmmigration.StartMigrationRequest],
-            operations_pb2.Operation]:
+    def start_migration(
+        self,
+    ) -> Callable[[vmmigration.StartMigrationRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._StartMigration(self._session, self._host, self._interceptor) # type: ignore
+        return self._StartMigration(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_group(self) -> Callable[
-            [vmmigration.UpdateGroupRequest],
-            operations_pb2.Operation]:
+    def update_group(
+        self,
+    ) -> Callable[[vmmigration.UpdateGroupRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateGroup(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateGroup(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_migrating_vm(self) -> Callable[
-            [vmmigration.UpdateMigratingVmRequest],
-            operations_pb2.Operation]:
+    def update_migrating_vm(
+        self,
+    ) -> Callable[[vmmigration.UpdateMigratingVmRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateMigratingVm(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateMigratingVm(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_source(self) -> Callable[
-            [vmmigration.UpdateSourceRequest],
-            operations_pb2.Operation]:
+    def update_source(
+        self,
+    ) -> Callable[[vmmigration.UpdateSourceRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateSource(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateSource(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_target_project(self) -> Callable[
-            [vmmigration.UpdateTargetProjectRequest],
-            operations_pb2.Operation]:
+    def update_target_project(
+        self,
+    ) -> Callable[[vmmigration.UpdateTargetProjectRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateTargetProject(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateTargetProject(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def upgrade_appliance(self) -> Callable[
-            [vmmigration.UpgradeApplianceRequest],
-            operations_pb2.Operation]:
+    def upgrade_appliance(
+        self,
+    ) -> Callable[[vmmigration.UpgradeApplianceRequest], operations_pb2.Operation]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpgradeAppliance(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpgradeAppliance(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
     def get_location(self):
-        return self._GetLocation(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetLocation(self._session, self._host, self._interceptor)  # type: ignore
 
     class _GetLocation(VmMigrationRestStub):
-        def __call__(self,
-            request: locations_pb2.GetLocationRequest, *,
-            retry: OptionalRetry=gapic_v1.method.DEFAULT,
-            timeout: Optional[float]=None,
-            metadata: Sequence[Tuple[str, str]]=(),
-            ) -> locations_pb2.Location:
+        def __call__(
+            self,
+            request: locations_pb2.GetLocationRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> locations_pb2.Location:
 
             r"""Call the get location method over HTTP.
 
@@ -5782,26 +6642,26 @@ class VmMigrationRestTransport(VmMigrationTransport):
                 locations_pb2.Location: Response from GetLocation method.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*}",
+                },
             ]
 
             request, metadata = self._interceptor.pre_get_location(request, metadata)
             request_kwargs = json_format.MessageToDict(request)
-            transcoded_request = path_template.transcode(
-                http_options, **request_kwargs)
+            transcoded_request = path_template.transcode(http_options, **request_kwargs)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json.dumps(transcoded_request['query_params']))
+            query_params = json.loads(json.dumps(transcoded_request["query_params"]))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
 
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
@@ -5822,15 +6682,17 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
     @property
     def list_locations(self):
-        return self._ListLocations(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListLocations(self._session, self._host, self._interceptor)  # type: ignore
 
     class _ListLocations(VmMigrationRestStub):
-        def __call__(self,
-            request: locations_pb2.ListLocationsRequest, *,
-            retry: OptionalRetry=gapic_v1.method.DEFAULT,
-            timeout: Optional[float]=None,
-            metadata: Sequence[Tuple[str, str]]=(),
-            ) -> locations_pb2.ListLocationsResponse:
+        def __call__(
+            self,
+            request: locations_pb2.ListLocationsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> locations_pb2.ListLocationsResponse:
 
             r"""Call the list locations method over HTTP.
 
@@ -5847,26 +6709,26 @@ class VmMigrationRestTransport(VmMigrationTransport):
                 locations_pb2.ListLocationsResponse: Response from ListLocations method.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*}/locations',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*}/locations",
+                },
             ]
 
             request, metadata = self._interceptor.pre_list_locations(request, metadata)
             request_kwargs = json_format.MessageToDict(request)
-            transcoded_request = path_template.transcode(
-                http_options, **request_kwargs)
+            transcoded_request = path_template.transcode(http_options, **request_kwargs)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json.dumps(transcoded_request['query_params']))
+            query_params = json.loads(json.dumps(transcoded_request["query_params"]))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
 
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
@@ -5887,15 +6749,17 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
     @property
     def cancel_operation(self):
-        return self._CancelOperation(self._session, self._host, self._interceptor) # type: ignore
+        return self._CancelOperation(self._session, self._host, self._interceptor)  # type: ignore
 
     class _CancelOperation(VmMigrationRestStub):
-        def __call__(self,
-            request: operations_pb2.CancelOperationRequest, *,
-            retry: OptionalRetry=gapic_v1.method.DEFAULT,
-            timeout: Optional[float]=None,
-            metadata: Sequence[Tuple[str, str]]=(),
-            ) -> None:
+        def __call__(
+            self,
+            request: operations_pb2.CancelOperationRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> None:
 
             r"""Call the cancel operation method over HTTP.
 
@@ -5909,28 +6773,30 @@ class VmMigrationRestTransport(VmMigrationTransport):
                     sent along with the request as metadata.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{name=projects/*/locations/*/operations/*}:cancel',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=projects/*/locations/*/operations/*}:cancel",
+                    "body": "*",
+                },
             ]
 
-            request, metadata = self._interceptor.pre_cancel_operation(request, metadata)
+            request, metadata = self._interceptor.pre_cancel_operation(
+                request, metadata
+            )
             request_kwargs = json_format.MessageToDict(request)
-            transcoded_request = path_template.transcode(
-                http_options, **request_kwargs)
+            transcoded_request = path_template.transcode(http_options, **request_kwargs)
 
-            body = json.loads(json.dumps(transcoded_request['body']))
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            body = json.loads(json.dumps(transcoded_request["body"]))
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json.dumps(transcoded_request['query_params']))
+            query_params = json.loads(json.dumps(transcoded_request["query_params"]))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
 
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
@@ -5949,15 +6815,17 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
     @property
     def delete_operation(self):
-        return self._DeleteOperation(self._session, self._host, self._interceptor) # type: ignore
+        return self._DeleteOperation(self._session, self._host, self._interceptor)  # type: ignore
 
     class _DeleteOperation(VmMigrationRestStub):
-        def __call__(self,
-            request: operations_pb2.DeleteOperationRequest, *,
-            retry: OptionalRetry=gapic_v1.method.DEFAULT,
-            timeout: Optional[float]=None,
-            metadata: Sequence[Tuple[str, str]]=(),
-            ) -> None:
+        def __call__(
+            self,
+            request: operations_pb2.DeleteOperationRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> None:
 
             r"""Call the delete operation method over HTTP.
 
@@ -5971,26 +6839,28 @@ class VmMigrationRestTransport(VmMigrationTransport):
                     sent along with the request as metadata.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'delete',
-                'uri': '/v1/{name=projects/*/locations/*/operations/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "delete",
+                    "uri": "/v1/{name=projects/*/locations/*/operations/*}",
+                },
             ]
 
-            request, metadata = self._interceptor.pre_delete_operation(request, metadata)
+            request, metadata = self._interceptor.pre_delete_operation(
+                request, metadata
+            )
             request_kwargs = json_format.MessageToDict(request)
-            transcoded_request = path_template.transcode(
-                http_options, **request_kwargs)
+            transcoded_request = path_template.transcode(http_options, **request_kwargs)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json.dumps(transcoded_request['query_params']))
+            query_params = json.loads(json.dumps(transcoded_request["query_params"]))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
 
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
@@ -6008,15 +6878,17 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
     @property
     def get_operation(self):
-        return self._GetOperation(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetOperation(self._session, self._host, self._interceptor)  # type: ignore
 
     class _GetOperation(VmMigrationRestStub):
-        def __call__(self,
-            request: operations_pb2.GetOperationRequest, *,
-            retry: OptionalRetry=gapic_v1.method.DEFAULT,
-            timeout: Optional[float]=None,
-            metadata: Sequence[Tuple[str, str]]=(),
-            ) -> operations_pb2.Operation:
+        def __call__(
+            self,
+            request: operations_pb2.GetOperationRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.Operation:
 
             r"""Call the get operation method over HTTP.
 
@@ -6033,26 +6905,26 @@ class VmMigrationRestTransport(VmMigrationTransport):
                 operations_pb2.Operation: Response from GetOperation method.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/operations/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/operations/*}",
+                },
             ]
 
             request, metadata = self._interceptor.pre_get_operation(request, metadata)
             request_kwargs = json_format.MessageToDict(request)
-            transcoded_request = path_template.transcode(
-                http_options, **request_kwargs)
+            transcoded_request = path_template.transcode(http_options, **request_kwargs)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json.dumps(transcoded_request['query_params']))
+            query_params = json.loads(json.dumps(transcoded_request["query_params"]))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
 
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
@@ -6073,15 +6945,17 @@ class VmMigrationRestTransport(VmMigrationTransport):
 
     @property
     def list_operations(self):
-        return self._ListOperations(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListOperations(self._session, self._host, self._interceptor)  # type: ignore
 
     class _ListOperations(VmMigrationRestStub):
-        def __call__(self,
-            request: operations_pb2.ListOperationsRequest, *,
-            retry: OptionalRetry=gapic_v1.method.DEFAULT,
-            timeout: Optional[float]=None,
-            metadata: Sequence[Tuple[str, str]]=(),
-            ) -> operations_pb2.ListOperationsResponse:
+        def __call__(
+            self,
+            request: operations_pb2.ListOperationsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> operations_pb2.ListOperationsResponse:
 
             r"""Call the list operations method over HTTP.
 
@@ -6098,26 +6972,26 @@ class VmMigrationRestTransport(VmMigrationTransport):
                 operations_pb2.ListOperationsResponse: Response from ListOperations method.
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*}/operations',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*}/operations",
+                },
             ]
 
             request, metadata = self._interceptor.pre_list_operations(request, metadata)
             request_kwargs = json_format.MessageToDict(request)
-            transcoded_request = path_template.transcode(
-                http_options, **request_kwargs)
+            transcoded_request = path_template.transcode(http_options, **request_kwargs)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json.dumps(transcoded_request['query_params']))
+            query_params = json.loads(json.dumps(transcoded_request["query_params"]))
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
 
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
@@ -6144,6 +7018,4 @@ class VmMigrationRestTransport(VmMigrationTransport):
         self._session.close()
 
 
-__all__=(
-    'VmMigrationRestTransport',
-)
+__all__ = ("VmMigrationRestTransport",)
